@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-
+const path = require('path');
 
 const baseurl = process.env.BASE_URL;
 const app = express();
@@ -11,6 +11,18 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from the root directory
+app.use(express.static(path.join(__dirname)));
+
+// Serve index.html at the root route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Serve books.html at the /books route
+app.get('/books', (req, res) => {
+    res.sendFile(path.join(__dirname, 'books.html'));
+});
 
 app.get('/bocker', async (req, res) => {
     try {

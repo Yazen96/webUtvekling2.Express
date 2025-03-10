@@ -42,6 +42,54 @@ app.post('/bocker', async (req, res) => {
     }
 });
 
+app.put('/bocker', async (req, res) => {
+    try {
+        const response = await axios.put(`${baseurl}/bocker`, req.body);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).send('Error fetching data from .NET API');
+    }
+});
+
+
+app.delete('/bocker', async (req, res) => {
+    try {
+        const response = await axios.delete(`${baseurl}/bocker`);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).send('Error fetching data from .NET API');
+    }
+});
+
+
+
+app.get('/bocker/:id', async (req, res) => {
+    try {
+        const response = await axios.get(`${baseurl}/bocker/${req.params.id}`);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).send('Error fetching data from .NET API');
+    }
+});
+
+app.put('/bocker/:id', async (req, res) => {   
+    try {
+        const response = await axios.put(`${baseurl}/bocker/${req.params.id}`, req.body);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).send('Error fetching data from .NET API');
+    }
+});
+
+app.delete('/bocker/:id', async (req, res) => {
+    try {
+        const response = await axios.delete(`${baseurl}/bocker/${req.params.id}`);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).send('Error fetching data from .NET API');
+    }
+});
+
 app.listen(PORT, (error) => {
     if (!error)
         console.log(`Server is Successfully Running, and App is listening on port ${PORT}`);
